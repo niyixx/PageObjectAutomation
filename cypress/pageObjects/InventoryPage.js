@@ -2,7 +2,9 @@ class InventoryPage{
     
     pageElements = {
         addToCartBtn: ()=> cy.get('button[class="btn_primary btn_inventory"]'),
-        removeFromCartBtn: ()=> cy.get('button[class="btn_secondary btn_inventory"]')
+        removeFromCartBtn: ()=> cy.get('button[class="btn_secondary btn_inventory"]'),
+        cartbtn: ()=> cy.get('svg[data-icon="shopping-cart"]'),
+        cartCount: ()=> cy.get('#shopping_cart_container > a > span')
     }
 
     addToCartBtnVisible(id){
@@ -29,6 +31,13 @@ class InventoryPage{
         .should("have.text","REMOVE")
         .click()
         return this
+    }
+
+    clickOnTheCart(){
+        this.pageElements.cartCount()
+        .should("be.visible")
+        this.pageElements.cartbtn()
+        .click()
     }
 
 }
